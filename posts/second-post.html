@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioFi for All</title>
+    <link rel="preconnect" href="https://api.fontshare.com">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --max-width: 800px;
+            --primary-text: #171717;
+            --secondary-text: #666666;
+            --background: #ffffff;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --sidebar-width: 300px;
+            --toggle-bg: #e5e5e5;
+            --toggle-dot: #171717;
+            --font-heading: 'Satoshi', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 700;
+            --font-weight-black: 900;
+        }
+
+        .dark {
+            --primary-text: #e6e6e6;
+            --secondary-text: #a0a0a0;
+            --background: #171717;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --header-bg: rgba(23, 23, 23, 0.8);
+            --toggle-bg: #444;
+            --toggle-dot: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--primary-text);
+            font-family: var(--font-body);
+            font-weight: var(--font-weight-normal);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--header-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .author-name {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-medium);
+            font-size: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            padding: 2rem;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+            background: var(--background);
+            scrollbar-width: thin;
+            scrollbar-color: var(--secondary-text) var(--background);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--secondary-text);
+            border-radius: 3px;
+        }
+
+        .contents-title {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-medium);
+            font-size: 0.875rem;
+            color: var(--secondary-text);
+            margin: 0 0 1.5rem 0;
+            padding-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contents-list {
+            list-style: none;
+            margin-left: 0.5rem;
+        }
+
+        .contents-list li {
+            margin-bottom: 1rem;
+        }
+
+        .contents-list a {
+            color: var(--secondary-text);
+            text-decoration: none;
+            font-size: 1rem;
+            line-height: 1.4;
+            display: block;
+            transition: color 0.2s ease;
+            padding: 0.25rem 0;
+        }
+
+        .contents-list a:hover {
+            color: var(--primary-text);
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 120px 4rem 4rem;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .article-title {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-black);
+            font-size: 4rem;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin: 0 0 1rem;
+        }
+
+        .article-subtitle {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-medium);
+            color: var(--secondary-text);
+            font-size: 1.5rem;
+            margin: 0 0 2rem;
+            letter-spacing: -0.02em;
+            font-style: italic;
+        }
+
+        .article-date {
+            color: var(--secondary-text);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .article-content {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            max-width: 800px;
+        }
+
+        .article-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            max-width: 70ch;
+        }
+
+        .article-content h2 {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-bold);
+            font-size: 2rem;
+            margin: 3rem 0 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content h3 {
+            font-family: var(--font-heading);
+            font-weight: var(--font-weight-bold);
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .dark-mode-toggle {
+            width: 48px;
+            height: 24px;
+            background: var(--toggle-bg);
+            border-radius: 12px;
+            padding: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--toggle-dot);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .dark .dark-mode-toggle::after {
+            transform: translateX(24px);
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --sidebar-width: 0px;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .site-header {
+                left: 0;
+            }
+            
+            .main-content {
+                padding: 100px 2rem 2rem;
+                margin-left: 0;
+            }
+            
+            .article-title {
+                font-size: 2.5rem;
+            }
+
+            .article-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+    <script>
+        document.documentElement.classList.add('dark');
+    </script>
+</head>
+<body>
+    <nav class="sidebar">
+        <h2 class="contents-title">Contents</h2>
+        <ul class="contents-list">
+            <li><a href="#basic-assumptions-and-framework">Basic assumptions and framework</a></li>
+<li><a href="#biology-and-health">Biology and health</a></li>
+        </ul>
+    </nav>
+
+    <header class="site-header">
+        <h1 class="author-name">Pamela Pascual</h1>
+        <div class="dark-mode-toggle" role="button" tabindex="0"></div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="article-title">BioFi for All</h1>
+        <p class="article-subtitle">How We Can Design with Abundance</p>
+        <div class="article-date">November 2024</div>
+        
+        <div class="article-content">
+            <p>I think and talk a lot about the risks of powerful AI. The company I&#39;m the CEO of, Anthropic, does a lot of research on how to reduce these risks. Because of this, people sometimes draw the conclusion that I&#39;m a pessimist or &quot;doomer&quot; who thinks AI will be mostly bad or dangerous. I don&#39;t think that at all. In fact, one of my main reasons for focusing on risks is that they&#39;re the only thing standing between us and what I see as a fundamentally positive future. I think that most people are underestimating just how radical the upside of AI could be, just as I think most people are underestimating how bad the risks could be.</p>
+<h2 id="basic-assumptions-and-framework">Basic assumptions and framework</h2>
+<p>In this essay I try to sketch out what that upside might look like—what a world with powerful AI might look like if everything goes <em>right</em>. Of course no one can know the future with any certainty or precision, and the effects of powerful AI are likely to be even more unpredictable than past technological changes, so all of this is unavoidably going to consist of guesses. But I am aiming for at least educated and useful guesses, which capture the flavor of what will happen even if most details end up being wrong. I&#39;m including lots of details mainly because I think a concrete vision does more to advance discussion than a highly hedged and abstract one</p>
+<h2 id="biology-and-health">Biology and health</h2>
+<p>Biology section content here...</p>
+<p>[Rest of the content...]</p>
+
+        </div>
+    </main>
+
+    <script>
+        document.querySelector('.dark-mode-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+    </script>
+</body>
+</html>
